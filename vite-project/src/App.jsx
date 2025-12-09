@@ -26,10 +26,11 @@ import RBFigure from "./Components/Figurr";
 import NoTransitionExample from "./Components/carousel";
 import Listgroup_example from "./Components/Listgroup";
 import Pagination_example from "./Components/Pagination";
-import FlushExample from "./Components/According";
 import Subscribe from "./Components/Modal";
 import NavbarWithOffcanvas from "./Components/Offcanvas";
 import Button_group from "./Components/Buttongroup";
+import Accordion_demo from "./Components/According";
+import FormExample from "./Components/Form";
 // import AccordionExample from "./Components/According";
 // import Accordion_Example from "./Components/According";
 
@@ -61,10 +62,12 @@ const App = () => {
           <Route path="figure" element={<RBFigure />} />
           <Route path="listgroup" element={<Listgroup_example />} />
           <Route path="pagination" element={<Pagination_example />} />
-          <Route path="accordion" element={<FlushExample />} />
+          <Route path="accordion" element={<Accordion_demo />} />
           <Route path="Modals" element={<Subscribe />} />
           <Route path="canvas" element={<NavbarWithOffcanvas />} />
           <Route path="buttongroup" element={<Button_group />} />
+          <Route path="Form" element={<FormExample />} />
+
 
 
 
