@@ -7,11 +7,14 @@ function BasicExample_card() {
       <Card.Img variant="top" src="https://m.media-amazon.com/images/I/61zvPe52NQL._AC_SY200_.jpg" />
       <Card.Body>
         <Card.Title>Mini Clip-On Reading Lamp</Card.Title>
-        <Card.Text>
-         70% ₹299 <br />
-M.R.P: ₹999
+        <Card.Text >
+       <b><p>  M.R.P: <span style={{ textDecoration: "line-through" ,color:'red'}}>₹999</span>
+</p></b>   
+         <b>70% ₹299</b> 
         </Card.Text>
         <Button variant="primary">Add to cart</Button>
+        <Button variant="primary" style={{ marginLeft: '50px' }}>Buy Now</Button>
+
       </Card.Body>
     </Card>
   );

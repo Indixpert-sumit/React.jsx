@@ -1,34 +1,35 @@
-import Accordion from 'react-bootstrap/Accordion';
+import { useState } from "react";
+import Accordion from "react-bootstrap/Accordion";
+import { AccordionButton, AccordionItem, AccordionBody } from "react-bootstrap";
+import { PlusCircle, DashCircle, PlusSquare, DashSquare } from "react-bootstrap-icons";
 
-function FlushExample() {
+const AccordionDemo = () => {
+  const [activeKey, setActiveKey] = useState("1");
+
+  const accordionItems = [
+    { id: "1", title: "What is the cost of an online course", content: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sed, quod? Placeat repudiandae cumque, esse nulla ipsa repellendus ipsam rerum odit." },
+    { id: "2", title: "Do I need to visit any physical location", content: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sed, quod? Placeat repudiandae cumque, esse nulla ipsa repellendus ipsam rerum odit.t" },
+    { id: "3", title: "What are the technologies requirements", content: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sed, quod? Placeat repudiandae cumque, esse nulla ipsa repellendus ipsam rerum odit." },
+    { id: "4", title: "How can I ask questions or clear doubts", content: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sed, quod? Placeat repudiandae cumque, esse nulla ipsa repellendus ipsam rerum odit." }
+  ];
+
   return (
-    <Accordion defaultActiveKey="0" flush>
-      <Accordion.Item eventKey="0">
-        <Accordion.Header>Accordion Item #1</Accordion.Header>
-        <Accordion.Body>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </Accordion.Body>
-      </Accordion.Item>
-      <Accordion.Item eventKey="1">
-        <Accordion.Header>Accordion Item #2</Accordion.Header>
-        <Accordion.Body>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </Accordion.Body>
-      </Accordion.Item>
+    <Accordion activeKey={activeKey} onSelect={(key) => setActiveKey(key)}>
+      {accordionItems.map((item) => {
+        const isOpen = activeKey === item.id;
+
+        return (
+          <AccordionItem key={item.id} eventKey={item.id}>
+            <AccordionButton className="d-flex justify-content-between" >
+              {item.title }
+              {isOpen ? <DashCircle  style={{marginLeft:'610px'}}/> : <PlusCircle  style={{marginLeft:'610px'}}/>}
+            </AccordionButton>
+            <AccordionBody>{item.content}</AccordionBody>
+          </AccordionItem>
+        );
+      })}
     </Accordion>
   );
-}
+};
 
-export default FlushExample;
+export default AccordionDemo;
