@@ -4,6 +4,7 @@ import { Form, Button, Col, Row, InputGroup } from 'react-bootstrap';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
 function FormExample() {
   const {
     register,
@@ -12,16 +13,13 @@ function FormExample() {
     reset,
     formState: { errors, isSubmitting },
   } = useForm({
-    mode: 'onBlur',
   });
 
-  const watchCities = watch('cities') || [];
-  const watchHobbies = watch('hobbies') || [];
-  const watchJoiningDate = watch('joiningDate');
-  const watchProfilePicture = watch('profilePicture');
-  const watchResume = watch('resume');
 
+        // Console Form data
   const onSubmit = async (data) => {
+     console.log("Form Data:", data);
+  
 
     toast.info('Submitting...');
     await new Promise((r) => setTimeout(r, 2000));
@@ -64,7 +62,7 @@ function FormExample() {
     const file = files[0];
     const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
     if (!allowedTypes.includes(file.type))
-      return 'Only JPG, PNG or GIF files are allowed';
+      return 'Only JPG, PNG ';
     if (file.size > 6 * 1024 * 1024) return 'Max file size is 6MB';
     return true;
   };
@@ -206,29 +204,12 @@ function FormExample() {
           </Form.Group>
         </Row>
 
-        <Form.Group className="mb-3" controlId="cities">
-          <Form.Label>Select Cities (select at least two)</Form.Label>
-          <Form.Select
-            multiple
-            {...register('cities', {
-              validate: validateCities,
-            })}
-            isInvalid={!!errors.cities}
-          >
-            <option value="Ahmedabad">Ahmedabad</option>
-            <option value="Delhi">Delhi</option>
-            <option value="Somnath">Somnath</option>
-          </Form.Select>
-          <Form.Control.Feedback type="invalid">
-            {errors.cities?.message}
-          </Form.Control.Feedback>
-        </Form.Group>
+             {/* Select Cities */}
 
         <Row className="mb-3">
           <Form.Group as={Col} md="6" controlId="address">
             <Form.Label>Your Complete Address</Form.Label>
             <Form.Control
-              as="textarea"
               rows={3}
               {...register('address', { required: 'Address required' })}
               isInvalid={!!errors.address}
@@ -308,7 +289,7 @@ function FormExample() {
           <div>
             <Form.Check
               inline
-              label="Drawing"
+              label="Gaming"
               type="checkbox"
               value="drawing"
               {...register('hobbies', { validate: validateHobbies })}
@@ -317,7 +298,7 @@ function FormExample() {
             />
             <Form.Check
               inline
-              label="Singing"
+              label="Reading"
               type="checkbox"
               value="singing"
               {...register('hobbies', { validate: validateHobbies })}
@@ -326,7 +307,7 @@ function FormExample() {
             />
             <Form.Check
               inline
-              label="Dancing"
+              label="Song Listening"
               type="checkbox"
               value="dancing"
               {...register('hobbies', { validate: validateHobbies })}
@@ -385,6 +366,7 @@ function FormExample() {
 
       <ToastContainer position="top-right" autoClose={3000} />
     </>
+    
   );
 }
 
