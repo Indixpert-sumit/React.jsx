@@ -12,7 +12,7 @@ const FILE_SIZE = 6 * 1024 * 1024;
 const RESUME_SIZE = 8 * 1024 * 1024;
 
 const schema = yup.object().shape({
-    firstName: yup.string().required("First name required"),
+    firstName: yup.string().required("First name is required"),
     lastName: yup.string().required("Last name required"),
 
     age: yup
@@ -29,17 +29,17 @@ const schema = yup.object().shape({
         .max(10, "Password must be 6–10 characters")
         .matches(/^\S*$/, "Password must not contain spaces"),
 
-    phone: yup.string().required("Phone number required"),
+    phone: yup.string().matches(/^\+?[1-9]\d{9,10}$/, "Enter a valid phone number")
+        .required("Phone number is required."),
+    email: yup.string().matches(
+        /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, "Enter a valid email address")
+        .required("Email address is required."),
 
-    email: yup
-        .string()
-        .email("Invalid email")
-        .required("Email required"),
+    country: yup.string().required("Please select the country it's required"),
 
-    country: yup.string().required("Country is required"),
-    state: yup.string().required("State is required"),
+    state: yup.string().required("Please select the state it's required"),
 
-    address: yup.string().required("Address required"),
+    address: yup.string().required("Please enter your address, it's required"),
 
     joiningDate: yup
         .date()
@@ -47,21 +47,20 @@ const schema = yup.object().shape({
         .max(new Date(), "Joining date must be before today")
         .required("Joining date is required"),
 
-    zip: yup.string().required("Zip code required"),
+    zip: yup.string().matches(/^\+?[1-9]\d{5,5}$/, "Enter valid PIN value")
+        .required("Please enter valid Zip/Pin"),
+    gender: yup.string().required("Gender is required"),
 
-    gender: yup.string().required("Gender required"),
-
-    hobbies: yup
-        .array()
-        .min(2, "Select at least two hobbies")
-        .required("Select at least two hobbies"),
+    hobbies: yup.array().required("Hobbies are required")
+        .typeError("Please select at least two hobbies")
+        .min(2, "Please select at least two hobbies"),
 
     profilePicture: yup
         .mixed()
         .test("required", "Profile picture is required", (value) => {
             return value && value.length > 0;
         })
-        .test("fileType", "Only JPG, PNG allowed", (value) => {
+        .test("filetype", "Only JPG, PNG allowed", (value) => {
             if (!value || value.length === 0) return true;
             return ["image/jpeg", "image/png"].includes(value[0].type);
         })
@@ -139,7 +138,7 @@ function FormExample() {
                     </Form.Group>
                 </Row>
 
-                {/* AGE + PASSWORD */}
+                {/* AGE  */}
                 <Row className="mb-3">
                     <Form.Group as={Col} md="6">
                         <Form.Label>Age</Form.Label>
@@ -152,6 +151,7 @@ function FormExample() {
                             {errors.age?.message}
                         </Form.Control.Feedback>
                     </Form.Group>
+                    {/* Password  */}
 
                     <Form.Group as={Col} md="6">
                         <Form.Label>Password</Form.Label>
@@ -166,7 +166,7 @@ function FormExample() {
                     </Form.Group>
                 </Row>
 
-                {/* PHONE + EMAIL */}
+                {/* PHONE  */}
                 <Row className="mb-3">
                     <Form.Group as={Col} md="6">
                         <Form.Label>Phone</Form.Label>
@@ -178,6 +178,7 @@ function FormExample() {
                             {errors.phone?.message}
                         </Form.Control.Feedback>
                     </Form.Group>
+                    {/* Email  */}
 
                     <Form.Group as={Col} md="6">
                         <Form.Label>Email</Form.Label>
