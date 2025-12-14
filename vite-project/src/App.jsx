@@ -31,6 +31,9 @@ import NavbarWithOffcanvas from "./Components/Offcanvas";
 import Button_group from "./Components/Buttongroup";
 import Accordion_demo from "./Components/According";
 import FormExample from "./Components/Form";
+import Demo_form1 from "./Components/Demo_form";
+import Drillling_ from "./Components/Drillling";
+import Yup_Form from "./Components/Yup_Form";
 // import AccordionExample from "./Components/According";
 // import Accordion_Example from "./Components/According";
 
@@ -67,14 +70,16 @@ const App = () => {
           <Route path="canvas" element={<NavbarWithOffcanvas />} />
           <Route path="buttongroup" element={<Button_group />} />
           <Route path="Form" element={<FormExample />} />
+          {/* <Route path="Form2" element={<Demo_form1 />} /> */}
+          <Route path="Components" element={<Drillling_ />} />
+
+          <Route path="yup" element={<Yup_Form />} />
 
 
 
 
 
 
-
-          {/* <Route path="accordion" element={<Accordion_Example />} /> */}
 
 
 

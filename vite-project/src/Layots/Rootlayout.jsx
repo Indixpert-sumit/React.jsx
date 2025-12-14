@@ -47,6 +47,12 @@ const RootLayout = () => {
                                     <li><Link to="/Modals">Modals</Link></li>
                                     <li><Link to="/canvas">Navbar & canvas</Link></li>
                                     <li><Link to="/buttongroup">ButtonGroup</Link></li>
+                                    <li><Link to="/Form">Form</Link></li>
+                                    {/* <li><Link to="/Form2">Form2</Link></li> */}
+                                    <li><Link to="/Components">Components</Link></li>
+
+                                    <li><Link to="/yup">Form+Yup</Link></li>
+
 
                                 </ul>
                             </Accordion.Body>

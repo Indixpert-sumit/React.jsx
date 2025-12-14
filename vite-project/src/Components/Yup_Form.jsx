@@ -223,7 +223,7 @@ function FormExample() {
                 {/* ADDRESS + JOINING DATE */}
                 <Row className="mb-3">
                     <Form.Group as={Col} md="6">
-                        <Form.Label>Address</Form.Label>
+                        <Form.Label>Address</Form.Label> 
                         <Form.Control
                             {...register("address")}
                             isInvalid={!!errors.address}
