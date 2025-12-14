@@ -43,7 +43,7 @@ const RootLayout = () => {
                                     <li><Link to="/progress">Progress</Link></li>
                                     <li><Link to="/transation">Transition</Link></li>
                                     <li><Link to="/carousels">carousels</Link></li>
-                                    <li><Link to="/accordion">accordion</Link></li>
+                                  <li><Link to="/accordion">accordion</Link></li>
                                     <li><Link to="/Modals">Modals</Link></li>
                                     <li><Link to="/canvas">Navbar & canvas</Link></li>
                                     <li><Link to="/buttongroup">ButtonGroup</Link></li>

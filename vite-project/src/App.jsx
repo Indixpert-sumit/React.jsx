@@ -73,7 +73,7 @@ const App = () => {
           {/* <Route path="Form2" element={<Demo_form1 />} /> */}
           <Route path="Components" element={<Drillling_ />} />
 
-          <Route path="yup" element={<Yup_Form />} />
+          <Route path="yup" element={<Yup_Form />} /> 
 
 
 
