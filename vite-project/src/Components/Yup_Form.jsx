@@ -34,6 +34,10 @@ const schema = yup.object().shape({
     email: yup.string().matches(
         /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, "Enter a valid email address")
         .required("Email address is required."),
+    cities: yup
+        .array()
+        .required('Please select cities')
+        .length(2, 'You must select exactly 2 cities'),
 
     country: yup.string().required("Please select the country it's required"),
 
@@ -104,8 +108,7 @@ function FormExample() {
     const onSubmit = async (data) => {
         console.log("Form Data:", data);
 
-        toast.info("Submitting...");
-        await new Promise((r) => setTimeout(r, 2000));
+
         toast.success("Form submitted successfully!");
         reset();
     };
@@ -193,6 +196,14 @@ function FormExample() {
                     </Form.Group>
                 </Row>
 
+
+
+
+
+
+
+
+
                 {/* COUNTRY + STATE */}
                 <Row className="mb-3">
                     <Form.Group as={Col} md="6">
@@ -223,7 +234,7 @@ function FormExample() {
                 {/* ADDRESS + JOINING DATE */}
                 <Row className="mb-3">
                     <Form.Group as={Col} md="6">
-                        <Form.Label>Address</Form.Label> 
+                        <Form.Label>Address</Form.Label>
                         <Form.Control
                             {...register("address")}
                             isInvalid={!!errors.address}
@@ -294,6 +305,25 @@ function FormExample() {
                         <Form.Check inline value="music" label="Music" type="checkbox" {...register("hobbies")} />
                     </div>
                     <p className="text-danger">{errors.hobbies?.message}</p>
+                </Form.Group>
+
+                <Form.Group controlId="cities">
+                    <Form.Label>Select Cities (Select exactly 2)</Form.Label>
+                    <Form.Select
+                        multiple
+                        {...register('cities')}
+                        isInvalid={!!errors.cities}
+                    >
+                        <option value="Delhi">Delhi</option>
+                        <option value="Mumbai">Mumbai</option>
+                        <option value="Bangalore">Bangalore</option>
+                        <option value="Chennai">Chennai</option>
+                        <option value="Pune">Pune</option>
+                    </Form.Select>
+
+                    <Form.Control.Feedback type="invalid">
+                        {errors.cities?.message}
+                    </Form.Control.Feedback>
                 </Form.Group>
 
                 {/* PROFILE FILE */}

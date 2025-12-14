@@ -16,10 +16,9 @@ function FormExample() {
   });
 
 
-        // Console Form data
   const onSubmit = async (data) => {
-     console.log("Form Data:", data);
-  
+    console.log("Form Data:", data);
+
 
     toast.info('Submitting...');
     await new Promise((r) => setTimeout(r, 2000));
@@ -35,14 +34,6 @@ function FormExample() {
     return true;
   };
 
-  const validateCities = (value) => {
-
-    if (!value || value.length < 2) return 'Select at least two cities';
-    <div><option value="">Select country</option>
-      <option value="India">India</option>
-      <option value="USA">USA</option></div>
-    return true;
-  };
 
   const validateJoiningDate = (value) => {
     if (!value) return 'Joining date is required';
@@ -56,6 +47,13 @@ function FormExample() {
     if (!value || value.length < 2) return 'Select at least two hobbies';
     return true;
   };
+  const validateCities = (value) => {
+    if (!value || value.length < 2) {
+      return 'Select at least two cities';
+    }
+    return true;
+  };
+
 
   const validateProfilePicture = (files) => {
     if (!files || files.length === 0) return 'Profile picture is required';
@@ -170,6 +168,28 @@ function FormExample() {
             </Form.Control.Feedback>
           </Form.Group>
         </Row>
+        {/* Select Cities */}
+        <Row className="mb-3">
+          <Form.Group as={Col} md="12" controlId="cities">
+            <Form.Label>Select Cities (Select at least two)</Form.Label>
+            <Form.Select
+              multiple
+              {...register('cities', { validate: validateCities })}
+              isInvalid={!!errors.cities}
+            >
+              <option value="Delhi">Delhi</option>
+              <option value="Mumbai">Mumbai</option>
+              <option value="Bangalore">Bangalore</option>
+              <option value="Chennai">Chennai</option>
+              <option value="Pune">Pune</option>
+            </Form.Select>
+
+            <Form.Control.Feedback type="invalid">
+              {errors.cities?.message}
+            </Form.Control.Feedback>
+          </Form.Group>
+        </Row>
+
 
         <Row className="mb-3">
           <Form.Group as={Col} md="6" controlId="country">
@@ -204,7 +224,7 @@ function FormExample() {
           </Form.Group>
         </Row>
 
-             {/* Select Cities */}
+        {/* Select Cities */}
 
         <Row className="mb-3">
           <Form.Group as={Col} md="6" controlId="address">
@@ -366,7 +386,7 @@ function FormExample() {
 
       <ToastContainer position="top-right" autoClose={3000} />
     </>
-    
+
   );
 }
 
