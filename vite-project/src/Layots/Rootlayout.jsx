@@ -43,15 +43,16 @@ const RootLayout = () => {
                                     <li><Link to="/progress">Progress</Link></li>
                                     <li><Link to="/transation">Transition</Link></li>
                                     <li><Link to="/carousels">carousels</Link></li>
-                                  <li><Link to="/accordion">accordion</Link></li>
+                                    <li><Link to="/RBAccordion">accordion</Link></li>
                                     <li><Link to="/Modals">Modals</Link></li>
                                     <li><Link to="/canvas">Navbar & canvas</Link></li>
                                     <li><Link to="/buttongroup">ButtonGroup</Link></li>
                                     <li><Link to="/Form">Form</Link></li>
-                                    {/* <li><Link to="/Form2">Form2</Link></li> */}
                                     <li><Link to="/Components">Components</Link></li>
 
                                     <li><Link to="/yup">Form+Yup</Link></li>
+                                    <li><Link to="/navtabs">Navtabs</Link></li>
+                                    <li><Link to="/products">Products</Link></li>
 
 
                                 </ul>
