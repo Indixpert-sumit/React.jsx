@@ -7,8 +7,7 @@ const Statemanagement_ = () => {
 
   return (
     <div>
-      Statemanagement_ name={name}
-      <ComponentA_ name={name} />
+      <ComponentA_  />
     </div>
   )
 }
