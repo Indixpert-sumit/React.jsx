@@ -1,15 +1,46 @@
-import React, { useContext } from 'react'
-import { WishlistContext } from '../Context/Context';
+import React, { useContext } from "react";
+import { Card, Button, Row, Col } from "react-bootstrap";
+import { WishlistContext } from "../Context/Context";
 
 const Wishlist = () => {
-    const { wishlistState } = useContext(WishlistContext);
+  const { wishlistState, wishlistDispatch } = useContext(WishlistContext);
 
-    return (
-        <div>
-            <pre>{JSON.stringify(wishlistState.wishlistItems, null, 2)}</pre>
+  const handleRemove = (id) => {
+    wishlistDispatch({ type: "REMOVE_FROM_WISHLIST", payload: id });
+    alert("Item removed from wishlist");
+  };
 
-        </div>
-    )
-}
+  return (
+    <div>
+      <h3>My Wishlist</h3>
 
-export default Wishlist
+      {wishlistState.wishlistItems.length === 0 ? (
+        <h5 className="text-muted">Your wishlist is empty</h5>
+      ) : (
+        <Row>
+          {wishlistState.wishlistItems.map((item) => (
+            <Col key={item.id} md={4} className="p-2">
+              <Card>
+                <Card.Img variant="top" src={item.thumbnail} />
+                <Card.Body>
+                  <Card.Title>{item.title}</Card.Title>
+                </Card.Body>
+                <Card.Footer className="d-flex justify-content-between">
+                  <Button
+                    variant="danger"
+                    size="sm"
+                    onClick={() => handleRemove(item.id)}
+                  >
+                    Remove
+                  </Button>
+                </Card.Footer>
+              </Card>
+            </Col>
+          ))}
+        </Row>
+      )}
+    </div>
+  );
+};
+
+export default Wishlist;
