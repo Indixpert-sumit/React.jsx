@@ -7,11 +7,12 @@ const Cart_ = () => {
   const { cartState, cartDispatch } = useContext(CartContext);
   const TotalPrice = () => {
     const total = cartState.cartItems.reduce((sum, item) => {
-      return sum + Number(item.price);
+      return sum + item.qty * Number(item.price);
     }, 0);
 
     return Math.round(total);
   };
+
 
 
   const handleRemove = (id) => {
@@ -38,14 +39,36 @@ const Cart_ = () => {
                 <Card.Title>₹{item.price}</Card.Title>
               </Card.Body>
 
-              <Card.Footer className="d-flex justify-content-between">
+              <Card.Footer className="d-flex justify-content-between align-items-center">
+
+                <div className="d-flex align-items-center gap-2">
+                  <Button
+                    variant="success"
+                    size="sm"
+                    onClick={() => cartDispatch({ type: "DECREASE_QTY", payload: item.id })}
+                  >
+                    -
+                  </Button>
+
+                  <span>{item.qty}</span>
+
+                  <Button
+                    variant="success"
+                    size="sm"
+                    onClick={() => cartDispatch({ type: "INCREASE_QTY", payload: item.id })}
+                  >
+                    +
+                  </Button>
+                </div>
+
                 <Button
-                  variant="success"
+                  variant="danger"
                   size="sm"
                   onClick={() => handleRemove(item.id)}
                 >
                   Remove
                 </Button>
+
               </Card.Footer>
             </Card>
           </Col>
