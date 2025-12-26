@@ -10,13 +10,13 @@ const Wishlist = () => {
     alert("Item removed from wishlist");
   };
 
+
+
   return (
     <div>
-      <h3>My Wishlist</h3>
 
-      {wishlistState.wishlistItems.length === 0 ? (
-        <h5 className="text-muted">Your wishlist is empty</h5>
-      ) : (
+
+     
         <Row>
           {wishlistState.wishlistItems.map((item) => (
             <Col key={item.id} md={4} className="p-2">
@@ -24,10 +24,12 @@ const Wishlist = () => {
                 <Card.Img variant="top" src={item.thumbnail} />
                 <Card.Body>
                   <Card.Title>{item.title}</Card.Title>
+                  <Card.Title>₹{item.price}</Card.Title>
                 </Card.Body>
+
                 <Card.Footer className="d-flex justify-content-between">
                   <Button
-                    variant="danger"
+                    variant="success"
                     size="sm"
                     onClick={() => handleRemove(item.id)}
                   >
@@ -38,7 +40,7 @@ const Wishlist = () => {
             </Col>
           ))}
         </Row>
-      )}
+      
     </div>
   );
 };

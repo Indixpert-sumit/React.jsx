@@ -3,15 +3,22 @@ import { Badge, Col, NavLink, Row } from 'react-bootstrap';
 import Accordion from 'react-bootstrap/Accordion';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { UserContext, WishlistContext } from '../Context/Context';
+import { CartContext } from '../Context/CartContex';
 
 const RootLayout = () => {
   const navigate = useNavigate();
+  const handleAddToCartClick = () => {
+    navigate("/Addtocart");
+  };
+
 
   const handleWishlistClick = () => {
     navigate("/wishlist");
   };
 
   const { wishlistState } = useContext(WishlistContext);
+  const { cartState } = useContext(CartContext);
+
   const { name } = useContext(UserContext);
 
   return (
@@ -20,13 +27,15 @@ const RootLayout = () => {
         <Row>
           <Col className="text-end">
             {name}
-
-            <button 
+            <button
               className="btn mb-2 btn-outline-primary"
-              onClick={handleWishlistClick}
-            >
-              Wishlist Bag <Badge>{wishlistState.wishlistItems.length}</Badge>
+              onClick={handleWishlistClick}> Wishlist Bag <Badge>{wishlistState.wishlistItems.length}</Badge>
             </button>
+            <button
+              className="btn mb-2 btn-outline-primary"
+              onClick={handleAddToCartClick}> Cart <Badge>{cartState.cartItems.length}</Badge>
+            </button>
+
 
           </Col>
         </Row>
@@ -74,6 +83,8 @@ const RootLayout = () => {
                   <li><Link to="/navtabs">Navtabs</Link></li>
                   <li><Link to="/products">Products</Link></li>
                   <li><Link to="/wishlist">Wishlist</Link></li>
+                  <li><Link to="/cart">cart</Link></li>
+
                 </ul>
               </Accordion.Body>
             </Accordion.Item>
